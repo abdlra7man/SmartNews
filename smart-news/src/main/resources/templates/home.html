@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Marketplace Demo</h1>
+        <h2>Spring Boot + Spring Security + AOP</h2>
+        <h3>1. Visit <a th:href="@{/admin}">Admin page (Login: Yes, Roles: 'prime_admin')</a></h3>
+        <h3>2. Visit <a th:href="@{/user}">User page (Login: Yes, Roles: 'prime_user' or 'prime_admin')</a></h3>
+        <h3>3. Visit <a th:href="@{/about}">About page (Login: No, Roles: Null)</a></h3>
+        <h3>4. Visit <a th:href="@{/api/v1/marketplace/categories}">Endpoint 1: get Categories (Login: Yes, Roles: 'prime_user' or 'prime_admin')</a></h3>
+        <h3>5. Visit <a th:href="@{/api/v1/marketplace/units}">Endpoint 2: get Units (Login: Yes, Roles: 'prime_admin')</a></h3>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
