@@ -7,6 +7,7 @@ import com.informaticsware.smartnews.model.entities.User;
 import com.informaticsware.smartnews.model.entities.UserNews;
 import com.informaticsware.smartnews.repository.NewsRepository;
 import com.informaticsware.smartnews.repository.UserRepository;
+import com.informaticsware.smartnews.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +66,7 @@ public class UserNewsService {
 
     public News createNews(News news){
         try {
+            news.setContent(HttpUtils.getContentsForURL(news.getLink()));
             return newsRepository.saveAndFlush(news);
         } catch (Exception de){
             throw new UserNewsException(de.getMessage());

@@ -34,6 +34,12 @@ public class News implements Serializable {
     @Column(name = "author")
     private String author;
 
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "publish_date")
+    private String publishDate;
+
     @OneToMany(mappedBy = "news")
     @JsonIgnore
     private Set<UserNews> userNews;
