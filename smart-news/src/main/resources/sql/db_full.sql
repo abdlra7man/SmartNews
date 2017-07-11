@@ -10,9 +10,11 @@ CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE news   (id INT NOT NULL AUTO_INCREMENT,
                     title VARCHAR(1024),
-                    description VARCHAR(1024),
+                    description TEXT,
                     link VARCHAR(1024),
                     author VARCHAR(1024),
+                    content MEDIUMTEXT,
+                    publish_date DATETIME,
                     PRIMARY KEY (id));
 
 CREATE TABLE roles (id INT NOT NULL AUTO_INCREMENT,
@@ -27,5 +29,7 @@ CREATE TABLE users_roles (id INT NOT NULL AUTO_INCREMENT,
 CREATE TABLE users_news (id INT NOT NULL AUTO_INCREMENT,
                           user_id INT NOT NULL,
                           news_id INT NOT NULL,
+                          action VARCHAR(50) NOT NULL,
+                          action_date DATETIME NOT NULL,
                           PRIMARY KEY (id));
 
