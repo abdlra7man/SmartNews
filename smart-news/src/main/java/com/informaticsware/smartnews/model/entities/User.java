@@ -34,12 +34,6 @@ public class User implements Serializable {
     @Column(name = "disabled")
     private String disabled;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_news", joinColumns = {
-            @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {
-            @JoinColumn(name = "news_id", referencedColumnName = "id")})
-    private Set<News> news;
-
-//    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="user")
-//    private List<News> news;
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserNews> userNews;
 }

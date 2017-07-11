@@ -4,14 +4,15 @@ import com.informaticsware.smartnews.exceptions.UserNewsException;
 import com.informaticsware.smartnews.model.dto.SmartNewsDTO;
 import com.informaticsware.smartnews.model.entities.News;
 import com.informaticsware.smartnews.model.entities.User;
+import com.informaticsware.smartnews.model.entities.UserNews;
 import com.informaticsware.smartnews.repository.NewsRepository;
 import com.informaticsware.smartnews.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Name on 6/06/2017.
@@ -78,18 +79,23 @@ public class UserNewsService {
                 user = new User();
                 user.setUsername(smartNewsDTO.getUserName());
                 user = createUser(user);
-                user.setNews(new HashSet<News>());
+                user.setUserNews(new HashSet<>());
             }
             News news = getNewsByLink(smartNewsDTO.getLink());
             if(news == null){
                 news = new News();
                 news.setAuthor(smartNewsDTO.getAuthor());
-                news.setDescription(smartNewsDTO.getDescirption());
+                news.setDescription(smartNewsDTO.getDescription());
                 news.setTitle(smartNewsDTO.getTitle());
                 news.setLink(smartNewsDTO.getLink());
                 news = createNews(news);
             }
-            user.getNews().add(news);
+            UserNews userNews = new UserNews();
+            userNews.setAction(smartNewsDTO.getAction());
+            userNews.setActionDate(new Date(smartNewsDTO.getActionTimeStamp()));
+            userNews.setNews(news);
+            userNews.setUser(user);
+            user.getUserNews().add(userNews);
             user = userRepository.saveAndFlush(user);
         } catch (Exception de){
             throw new UserNewsException(de.getMessage());
