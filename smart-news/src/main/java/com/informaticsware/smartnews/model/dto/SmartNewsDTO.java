@@ -19,5 +19,5 @@ public class SmartNewsDTO {
     private String link;
     private Action action;
     private Long actionTimeStamp;
-
+    private Long newsPublicationTimeStamp;
 }

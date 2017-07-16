@@ -90,6 +90,9 @@ public class UserNewsService {
                 news.setDescription(smartNewsDTO.getDescription());
                 news.setTitle(smartNewsDTO.getTitle());
                 news.setLink(smartNewsDTO.getLink());
+                if(smartNewsDTO.getNewsPublicationTimeStamp() != null){
+                    news.setPublishDate(new Date(smartNewsDTO.getNewsPublicationTimeStamp()));
+                }
                 news = createNews(news);
             }
             UserNews userNews = new UserNews();
@@ -104,47 +107,4 @@ public class UserNewsService {
         }
         return user;
     }
-
-//    public MpCategory createCategory(MpCategory category){
-//        validateCategoryTitleAndDescription(category);
-//        try {
-//            return categoryRepository.saveAndFlush(category);
-//        } catch (DataIntegrityViolationException de){
-//            throw new MpCategoryException(MpCategoryException.CATEGORY_TITLE_NON_UNIQUE);
-//        }
-//    }
-//
-//    public MpCategory updateCategory(MpCategory newCategory){
-//        validateCategoryTitleAndDescription(newCategory);
-//        MpCategory category = categoryRepository.findOne(newCategory.getId());
-//        if(category == null){
-//            throw new MpCategoryException(MpCategoryException.CATEGORY_NOT_FOUND);
-//        }
-//        category.setTitle(newCategory.getTitle());
-//        category.setDescription(newCategory.getDescription());
-//        try {
-//            return categoryRepository.saveAndFlush(category);
-//        } catch (DataIntegrityViolationException de){
-//            throw new MpCategoryException(MpCategoryException.CATEGORY_TITLE_NON_UNIQUE);
-//        }
-//    }
-//
-//    public void deleteCategory(Long categoryId){
-//        MpCategory category = getCategory(categoryId);
-//        if (category == null){
-//            throw new MpCategoryException(MpCategoryException.CATEGORY_NOT_FOUND);
-//        }
-//        categoryRepository.delete(categoryId);
-//    }
-//
-//    public Set<MpUnit> getUnitsInCategory(Long categoryId){
-//        MpCategory category = getCategory(categoryId);
-//        if (category == null){
-//            throw new MpCategoryException(MpCategoryException.CATEGORY_NOT_FOUND);
-//        }
-//        return category.getMpUnitSet();
-//    }
-
-
-
 }

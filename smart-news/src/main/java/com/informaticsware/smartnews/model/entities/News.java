@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -38,7 +39,7 @@ public class News implements Serializable {
     private String content;
 
     @Column(name = "publish_date")
-    private String publishDate;
+    private Date publishDate;
 
     @OneToMany(mappedBy = "news")
     @JsonIgnore
