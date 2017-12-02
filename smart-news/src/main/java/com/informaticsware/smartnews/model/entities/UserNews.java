@@ -24,6 +24,7 @@ public class UserNews implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
